@@ -129,12 +129,40 @@
   };
 
   // Produce a duplicate-free version of the array.
-  _.uniq = function(array, isSorted, iterator) {
-    //create result array
-    //iterate over array
-    //i
 
+  // I array, isSorted(boolean), iterator( fn )
+
+  // O a new array with the unique values
+
+  // C if there is an iterator apply it to the value of the array,
+  // and if the transformed value is unique, push to result array
+
+  // E
+
+  _.uniq = function(array, iterator) {
+    //create result array
+    var result = [];
+    var invokedArr = [];
+
+    _.each(array, function(value, index, array) {
+      if (iterator === undefined) {
+        if (result.indexOf(value) === -1) {
+          result.push(value);
+        }
+      } else if (invokedArr.indexOf(iterator(value)) === -1) {
+        invokedArr.push(iterator(value));
+        result.push(value);
+      }
+
+    });
+
+
+    //else
+
+    return result;
   };
+
+
 
 
   // Return the results of applying an iterator to each element.
