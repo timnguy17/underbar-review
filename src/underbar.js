@@ -37,7 +37,13 @@
 
   // Like first, but for the last elements. If n is undefined, return just the
   // last element.
+
   _.last = function(array, n) {
+    if (n === undefined) {
+      return array[array.length - 1];
+    } else {
+      return array.slice(0, n);
+    }
   };
 
   // Call iterator(value, key, collection) for each element of collection.
@@ -45,7 +51,28 @@
   //
   // Note: _.each does not have a return value, but rather simply runs the
   // iterator function over each item in the input collection.
+
+  //I collection ( array or obj ), iterator (fn)
+  //O none
+  //C
+  //E
+
   _.each = function(collection, iterator) {
+    //if the collection is an array
+    //for
+    if (Array.isArray(collection)) {
+      for (var i = 0; i < collection.length; i++) {
+        iterator(collection[i], i, collection);
+      }
+    } else {
+      for ( var key in collection) {
+        iterator(collection[key], key, collection);
+      }
+    }
+
+    //if the collection is an obj
+    // for in
+
   };
 
   // Returns the index at which value can be found in the array, or -1 if value
@@ -66,17 +93,47 @@
   };
 
   // Return all elements of an array that pass a truth test.
+
+  // I collection( array, obj), test( fn)
+  // O array of items wich pass the truth test
+  // C
+  // E
+
   _.filter = function(collection, test) {
+    //create a result array
+    var passResult = [];
+    //calling each on the collection
+    _.each(collection, function(item, index, collection) {
+      if (test(item)) {
+        passResult.push(item);
+      }
+    });
+    //if each item passes test
+    //push item into result
+    return passResult;
+    //return result
   };
 
   // Return all elements of an array that don't pass a truth test.
   _.reject = function(collection, test) {
     // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
+    var passResult = [];
+    _.each(collection, function(item, index, collection) {
+      if (!test(item)) {
+        passResult.push(item);
+      }
+    });
+    return passResult;
+
   };
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array, isSorted, iterator) {
+    //create result array
+    //iterate over array
+    //i
+
   };
 
 
