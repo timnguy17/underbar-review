@@ -225,6 +225,30 @@
   //          No accumulator is given so the first element is used.
 
   _.reduce = function(collection, iterator, accumulator) {
+    //if the acumulator is undefined
+    if (accumulator === undefined) {
+    //set accumulator equal to collection at index of 0
+      var accumulator = collection[0];
+      //iterate over the collection after the 0 index
+      for (var i = 1; i < collection.length; i++) {
+        //call iterator and pass in accumulator and item as arguments
+        accumulator = iterator(accumulator, collection[i]);
+      }
+      return accumulator;
+    } else {
+      var accumulator = accumulator;
+      for (i = 0; i < collection.length; i++) {
+        accumulator = iterator(accumulator, collection[i]);
+      }
+      return accumulator;
+    }
+
+
+
+    //iterate over the collection
+    //iterate over the collection
+    //call iterator and pass in accumulator and item as arguments
+
 
   };
 
